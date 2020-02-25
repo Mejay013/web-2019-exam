@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if error %}
+<div class="alert alert-danger" role="alert">
+  {{ error }}
+</div>
+{% endif %}
+<form class="from" action="{{url_for('main.set', id = issue.id)}}" method="POST">
+  <label  class="col-sm-2 col-form-label ">Дата:</label>
+  <input type="text" name="red_user_fio" class="form-control"  readonly="readonly" value="{{user.query.filter_by(id = current_user.id).first().user_fio}}" >
+  {% if current_user.user_role == 1 %}
+  <div class="form-group">
+    <label for="sel1">Пользователь:</label>
+    <select class="form-control" name="new_user_issue" id="sel1" >
+      {% for users in user_list %}
+      <option value ='{{users.id}}' >{{users.user_fio}}</option>
+      {% endfor %}
+    </select>
+  </div>
+  {% endif %}
+  {% if current_user.user_role == 2 %}
+  <label  class="col-sm-2 col-form-label ">Пользователь:</label>
+  <input type="text" name="red_user_fio" class="form-control"  readonly="readonly" value="{{user.query.filter_by(id = issue.user_log).first().user_fio}}" >
+  {% endif %}
+  <label  class="col-sm-2 col-form-label ">Книга:</label>
+  <input type="text" name="red_user_fio" class="form-control"  readonly="readonly" value="{{books_list.query.filter_by(id = issue.book_log).first().name_book}}" >
+  
+  {% if current_user.user_role == 1 or current_user.user_role == 2 %}
+  <div class="form-group">
+    <label for="sel1">Пользователь:</label>
+    <select class="form-control" name="new_user_issue" id="sel1" >
+      {% for new_status in status_list %}
+      <option value ='{{new_status.id}}' >{{new_status.status}}</option>
+      {% endfor %}
+    </select>
+  </div>
+  {% endif %}
+{% endblock %}

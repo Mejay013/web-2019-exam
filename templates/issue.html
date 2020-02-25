@@ -8,6 +8,9 @@
             <td>Польователь</td>
             <td>Книга</td>
             <td>Статус</td>
+            {% if current_user.user_role == 1 or current_user.user_role == 2 %}
+            <td>Действие</td>
+            {% endif %}
           </tr>
     </thead>
     <tbody>
@@ -18,7 +21,10 @@
               <td>{{user.query.filter_by(id = log.user_log).first().user_fio}}</td>
               <td>{{books_list.query.filter_by(id = log.book_log).first().name_book}}</td>
               <td>{{status_list.query.filter_by(id = log.status_log).first().status }}</td>
-              </tr>
+              {% if current_user.user_role == 1 or current_user.user_role == 2 %}
+              <td><a href="{{ url_for('main.set', id = log.id)}}" ><button type="button" class="btn btn-primary">Изменить</button></a></td>
+              {% endif %}  
+            </tr>
               {% endfor %}
               </tbody>
             </table>
