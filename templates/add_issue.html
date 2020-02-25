@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<form class="from" action="{{url_for('main.add', id = book.id)}}" method="POST">
+    <h3>Книга: {{book.name_book}}</h3>
+    <div class="form-group">
+        <label for="sel1">Пользователь:</label>
+        <select class="form-control" name="new_user" id="sel1" >
+          {% for users in user_list %}
+          <option value ='{{users.id}}' >{{users.user_fio}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <input type="submit" class="btn btn-primary">
+    
+{% endblock %}

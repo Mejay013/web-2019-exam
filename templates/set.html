@@ -5,20 +5,30 @@
   {{ error }}
 </div>
 {% endif %}
+{% if current_user.user_role == 1 %}
 <form class="from" action="{{url_for('main.set', id = issue.id)}}" method="POST">
-  {% if current_user.user_role == 1 %}
   <div class="form-group">
     <label for="sel1">Пользователь:</label>
     <select class="form-control" name="new_user_issue" id="sel1" >
-      <option value ='1' >{{user.query.filter_by(id = 1).first().user_fio}}</option>
-      <option value ='2' >{{user.query.filter_by(id = 2).first().user_fio}}</option>
-      <option value ='3' >{{user.query.filter_by(id = 3).first().user_fio}}</option>
+      {% for users in user_list %}
+      <option value ='{{users.id}}' >{{users.user_fio}}</option>
+      {% endfor %}
     </select>
   </div>
-  {% endif %}
-  {% if current_user.user_role == 1 or current_user.user_role == 2 %}
   <div class="form-group">
-    <label for="sel1">Пользователь:</label>
+    <label for="sel1">Cтатус:</label>
+    <select class="form-control" name="new_status" id="sel1" >
+      {% for new_status in status_list %}
+      <option value ='{{new_status.id}}' >{{new_status.status}}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <input type="submit" class="btn btn-primary" >
+  {% endif %}
+  {% if current_user.user_role == 2 %}
+<form class="from" action="{{url_for('main.set2', id = issue.id)}}" method="POST">
+  <div class="form-group">
+    <label for="sel1">Cтатус:</label>
     <select class="form-control" name="new_status" id="sel1" >
       {% for new_status in status_list %}
       <option value ='{{new_status.id}}' >{{new_status.status}}</option>
