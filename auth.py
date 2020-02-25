@@ -44,7 +44,7 @@ def reg():
             return render_template('login.html',error=error)
 
         if re.match(r'\S{3,30}',password) and re.match(r'\S{3,30}',login) and re.match(r'\S{3,30}',user_fio):
-            new_user = User(user_login=login , user_fio= user_fio , user_pass=generate_password_hash(password,method='sha256'),user_role = 1)
+            new_user = User(user_login=login , user_fio= user_fio , user_pass=generate_password_hash(password,method='sha256'),user_role = 3)
 
             db.session.add(new_user)
             db.session.commit()

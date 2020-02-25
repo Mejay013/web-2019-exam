@@ -38,9 +38,5 @@ app.register_blueprint(main_blueprint)
 ## INSERT INTO books (name_book, author,value_book) VALUES ('Дети капитана Гранта','Жуль Верн',30),('2000 лье под водой','Жуль Верн',15),('История России','Анастасия Михалова',120),('Веб-разработка для самых маленьких','Зигмунд Фрейд',20);
 ## DELETE FROM users WHERE id > 5; | or| TRUNCATE users;
 ## SELECT `id`,`name` FROM `users` WHERE `id`>3 AND `id` <5
-##INSERT INTO appeal_type (type_appeal) VALUES ('Проблемы с компьютером');
-##INSERT INTO appeal_type (type_appeal) VALUES ('Доступ в интернет'),('Доступ к общим ресурсам организации'),('Предоставление доступа'),('Другое');
-##INSERT INTO appeal_status (status_appeal) VALUES ('Новое'),('В работе'),('Ошибочное'),('Отказано'),('Решено');
-##INSERT INTO role (role , description) VALUES ('администратор','суперпользователь, имеет полный доступ к системе, в том числе к удалению обращений'),('специалист технической поддержки','может производить манипуляции с состоянием обращений — изменением статуса'),('пользователь','может оставлять обращения');
-##
+##INSERT INTO issue_log (date_log,user_log,book_log,status_log) VALUES ('2019-01-17','2','3','1'); 
 ##

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table">
+    <thead>
+        <tr>
+            <td>№</td>
+            <td>Дата</td>
+            <td>Польователь</td>
+            <td>Книга</td>
+            <td>Статус</td>
+          </tr>
+    </thead>
+    <tbody>
+            {% for log in issue_list %}
+            <tr>
+              <td>{{log.id}}</td>
+              <td>{{log.date_log}}</td>
+              <td>{{user.query.filter_by(id = log.user_log).first().user_fio}}</td>
+              <td>{{books_list.query.filter_by(id = log.book_log).first().name_book}}</td>
+              <td>{{status_list.query.filter_by(id = log.status_log).first().status }}</td>
+              </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+{% endblock %}

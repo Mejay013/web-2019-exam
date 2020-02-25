@@ -16,10 +16,14 @@
       <div class="row1">
       <div class="div1">
         <a class="nav-item nav-link active" href="{{ url_for('main.index')}}">Главная</a>
+        {% if current_user.is_authenticated %}
+        <a class="nav-item nav-link active" href="{{ url_for('main.issue')}}" >Журнал Выдачи</a>
+        {% else %}
+        <a class="nav-item nav-link active" href="{{ url_for('auth.login')}}" >Журнал Выдачи</a>
+        {% endif %}
       </div>
         <div class="div2">
           {% if current_user.is_authenticated %}
-          
           <a class="nav-link disabled" href="{{ url_for('main.index')}}">{{current_user.user_fio}}</a>
           <a class="nav-item nav-link active" href="{{ url_for('auth.logout')}}" >Выход</a>
           {% else %}

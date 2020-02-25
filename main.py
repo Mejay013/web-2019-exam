@@ -9,8 +9,14 @@ main = Blueprint('main',__name__)
 @main.route('/')
 def index():
     books_list = Books.query.order_by(Books.author.desc())
-    issue_list = Issue_log
+    return render_template('index.html',books_list=books_list)
+
+@main.route('/issue')
+def issue():
+    books_list = Books
+    issue_list = Issue_log.query.order_by(Issue_log.date_log.desc())
     status_list = Status
     user = User
     role = Role
-    return render_template('index.html',books_list=books_list,issue_list=issue_list,status_list=status_list,user=user,role=role)
+    return render_template('issue.html',books_list=books_list,issue_list=issue_list,status_list=status_list,user=user,role=role)
+

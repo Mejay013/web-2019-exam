@@ -21,7 +21,7 @@
               <td>{{book.value_book}}</td>
               <td>{{book.year}}</td>
               <td></td>
-              {% if current_user.role == 1 %}
+              {% if current_user.user_role == 1 %}
               <td>
                 <div class="btn-group" role="group">
                   <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,7 +35,7 @@
                 </div>
              </td>
               {% endif %}
-              {% if current_user.role == 2 %}
+              {% if current_user.user_role == 2 %}
                   <td>
                 <div class="btn-group" role="group">
                   <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,7 +60,7 @@
                 </div>
              </td>
               {% endif %}
-              {% if current_user.role == 3 %}
+              {% if current_user.user_role == 3 %}
                   <td>
                 <div class="btn-group" role="group">
                   <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
