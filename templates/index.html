@@ -1,4 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
-Hello world
+<table class="table">
+    <thead>
+        <tr>
+            <td>№</td>
+            <td>Название</td>
+            <td>Автор</td>
+            <td>Кол-во</td>
+            <td>Дата</td>
+          </tr>
+    </thead>
+        <tbody>
+
+            {% for book in books_list %}
+            <tr>
+              <td>{{book.id}}</td>
+              <td>{{book.name_book}}</td>
+              <td>{{book.author}}</td>
+              <td>{{book.value_book}}</td>
+              <td>{{book.year}}</td>
+           </tr>
+           {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

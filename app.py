@@ -35,7 +35,7 @@ app.register_blueprint(main_blueprint)
 ## . ve/bin/activate
 ## https://www.sinyawskiy.ru/sqlalchemy.html
 ## https://regex101.com
-## INSERT INTO users (name, age) VALUES('Алексей', 38), ('Мартин', 12);
+## INSERT INTO books (name_book, author,value_book) VALUES ('Дети капитана Гранта','Жуль Верн',30),('2000 лье под водой','Жуль Верн',15),('История России','Анастасия Михалова',120),('Веб-разработка для самых маленьких','Зигмунд Фрейд',20);
 ## DELETE FROM users WHERE id > 5; | or| TRUNCATE users;
 ## SELECT `id`,`name` FROM `users` WHERE `id`>3 AND `id` <5
 ##INSERT INTO appeal_type (type_appeal) VALUES ('Проблемы с компьютером');
