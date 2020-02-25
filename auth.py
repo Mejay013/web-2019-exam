@@ -2,7 +2,7 @@ from flask import Blueprint , render_template , redirect , url_for , request , f
 from werkzeug.security import generate_password_hash , check_password_hash
 from .app import db
 from flask_login import login_required , current_user , login_user ,logout_user
-
+from .models import Books,Issue_log,Status,User,Role
 import re
 
 auth = Blueprint('auth',__name__)
@@ -17,8 +17,8 @@ def sign_in():
         login = request.form['log_login']
         password = request.form['log_password']
 
-        user = User.query.filter_by(login = login).first()
-        if not user or not check_password_hash(user.password, password):
+        user = User.query.filter_by(user_login = login).first()
+        if not user or not check_password_hash(user.user_pass, password):
             error = 'Проверьте введенные данные'
             return render_template('login.html', error = error)
         
@@ -35,7 +35,7 @@ def reg():
         password2 = request.form['reg_password2']
         user_fio = request.form['reg_user_fio']
 
-        user =  User.query.filter_by(login = login).first()
+        user =  User.query.filter_by(user_login = login).first()
         if user:
             error = 'Логин уже занят!'
             return render_template('login.html',error=error)
@@ -44,7 +44,7 @@ def reg():
             return render_template('login.html',error=error)
 
         if re.match(r'\S{3,30}',password) and re.match(r'\S{3,30}',login) and re.match(r'\S{3,30}',user_fio):
-            new_user = User(login=login , user_fio= user_fio , password=generate_password_hash(password,method='sha256'),role = 3)
+            new_user = User(user_login=login , user_fio= user_fio , user_pass=generate_password_hash(password,method='sha256'),user_role = 1)
 
             db.session.add(new_user)
             db.session.commit()

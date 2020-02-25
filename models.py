@@ -5,11 +5,11 @@ class Books(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name_book = db.Column(db.String(255), nullable=False)
     author = db.Column(db.String(255), nullable = False)
-    year= db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+    year= db.Column(db.Date, nullable=True, default=datetime.utcnow)
     value_book = db.Column(db.Integer, nullable = False)
 class Issue_log(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date_log = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+    date_log = db.Column(db.Date, nullable=True, default=datetime.utcnow)
     user_log = db.Column(db.Integer, db.ForeignKey('user.id'),nullable = False)
     book_log = db.Column(db.Integer, db.ForeignKey('books.id'),nullable = False)
     status_log = db.Column(db.Integer, db.ForeignKey('status.id'),nullable = False)

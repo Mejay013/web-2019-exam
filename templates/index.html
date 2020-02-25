@@ -8,10 +8,11 @@
             <td>Автор</td>
             <td>Кол-во</td>
             <td>Дата</td>
+            <td>Кол-во выдано</td>
+            <td>Действия</td>
           </tr>
     </thead>
-        <tbody>
-
+    <tbody>
             {% for book in books_list %}
             <tr>
               <td>{{book.id}}</td>
@@ -19,8 +20,60 @@
               <td>{{book.author}}</td>
               <td>{{book.value_book}}</td>
               <td>{{book.year}}</td>
-           </tr>
-           {% endfor %}
-        </tbody>
-    </table>
+              <td></td>
+              {% if current_user.role == 1 %}
+              <td>
+                <div class="btn-group" role="group">
+                  <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Действия
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item" href="#">Выдать книгу</a>
+                    <a class="dropdown-item" href="#">Редактировать</a>
+                    <a class="dropdown-item" href="#">Удалить</a>
+                  </div>
+                </div>
+             </td>
+              {% endif %}
+              {% if current_user.role == 2 %}
+                  <td>
+                <div class="btn-group" role="group">
+                  <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Действия
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item" href="#">Выдать книгу</a>
+                    <a class="dropdown-item" href="#">Редактировать</a>
+                  </div>
+                </div>
+             </td>
+              {% endif %}
+              {% if not current_user.is_authenticated %}
+                  <td>
+                <div class="btn-group" role="group">
+                  <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Действия
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item" href="#">Выдать книгу</a>
+                  </div>
+                </div>
+             </td>
+              {% endif %}
+              {% if current_user.role == 3 %}
+                  <td>
+                <div class="btn-group" role="group">
+                  <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Действия
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item" href="#">Выдать книгу</a>
+                  </div>
+                </div>
+             </td>
+              {% endif %}
+              </tr>
+              {% endfor %}
+              </tbody>
+            </table>
 {% endblock %}
